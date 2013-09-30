@@ -260,11 +260,12 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " ==========================================================
 " Javascript
 " ==========================================================
+au FileType javascript setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 au BufRead *.js set makeprg=jslint\ %
 
 " Use tab to scroll through autocomplete menus
-"autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
-"autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
+autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
+autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
 
 let g:acp_completeoptPreview=1
 
@@ -306,3 +307,15 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
 endif
 
 set colorcolumn=79
+
+highlight Pmenu         guifg=White ctermfg=White
+highlight PmenuSel      guifg=White ctermfg=White gui=bold cterm=bold
+highlight PmenuSbar     guibg=Grey ctermbg=Grey
+highlight PmenuThumb    guibg=White ctermbg=White
+
+
+" Clang complete
+let g:clang_snippets = 1
+let g:clang_snippets_engine = 'clang_complete'
+
+highlight Normal ctermbg=None
