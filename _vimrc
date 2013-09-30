@@ -5,7 +5,6 @@
 " Pep8 - http://pypi.python.org/pypi/pep8
 " Pyflakes
 " Ack
-" Rake & Ruby for command-t
 " nose, django-nose
 
 " ==========================================================
@@ -113,8 +112,9 @@ imap <C-W> <C-O><C-W>
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
 
-" Run command-t file search
-map <leader>f :CommandT<CR>
+map <leader>f :CtrlP<CR>
+map <leader>b :CtrlPBuffer<CR>
+
 " Ack searching
 nmap <leader>a <Esc>:Ack!
 
@@ -221,7 +221,7 @@ set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
 
 " displays tabs with :set list & displays when a line runs off-screen
 set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
-set list
+"set list
 
 """ Searching and Patterns
 set ignorecase              " Default to using case insensitive searches,
@@ -232,15 +232,14 @@ set incsearch               " Incrementally search while typing a /regex
 
 """" Display
 if has("gui_running")
-    colorscheme desert
     " Remove menu bar
     set guioptions-=m
 
     " Remove toolbar
     set guioptions-=T
-else
-    colorscheme torte
 endif
+
+colorscheme molokai
 
 " Paste from clipboard
 map <leader>p "+p
@@ -306,7 +305,9 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
 
-set colorcolumn=79
+if exists("&colorcolumn")
+   set colorcolumn=79
+endif
 
 highlight Pmenu         guifg=White ctermfg=White
 highlight PmenuSel      guifg=White ctermfg=White gui=bold cterm=bold
