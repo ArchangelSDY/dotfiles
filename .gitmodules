@@ -63,4 +63,10 @@
 	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "_vim/bundle/ctrlp"]
 	path = _vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
+    url = https://github.com/kien/ctrlp.vim.git
+[submodule "_vim/bundle/emmet"]
+	path = _vim/bundle/emmet
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "_vim/bundle/jshint2"]
+	path = _vim/bundle/jshint2
+	url = https://github.com/Shutnik/jshint2.vim.git

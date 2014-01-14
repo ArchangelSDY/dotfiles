@@ -239,7 +239,7 @@ if has("gui_running")
     set guioptions-=T
 endif
 
-colorscheme molokai
+colorscheme desert
 
 " Paste from clipboard
 map <leader>p "+p
@@ -259,11 +259,16 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " ==========================================================
 " Javascript
 " ==========================================================
-au BufRead *.js set makeprg=jslint\ %
+" au BufRead *.js set makeprg=jslint\ %
+au BufRead *.js set makeprg=jshint\ %
+
+nnoremap <leader>j :JSHint<CR>
+inoremap <leader>j <C-O>:JSHint<CR>
+vnoremap <leader>j :JSHint<CR>
 
 " Use tab to scroll through autocomplete menus
-"autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
-"autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
+autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
+autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
 
 let g:acp_completeoptPreview=1
 
@@ -278,7 +283,7 @@ autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 so
 "au BufRead *.py compiler nose
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-au FileType coffee setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType coffee setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
@@ -307,3 +312,8 @@ endif
 if exists("&colorcolumn")
    set colorcolumn=79
 endif
+
+" Spaces
+:highlight ExtraWhitespace ctermbg=red guibg=red
+" :match ExtraWhitespace /\s\+$\| \+\ze\t/
+:match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t/
